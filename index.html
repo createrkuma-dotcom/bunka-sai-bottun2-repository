@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>サウンドパネル</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    overflow: hidden;
+    touch-action: manipulation;
+    font-family: Arial, sans-serif;
+}
+
+#buttons {
+    width: 100%;
+    height: 100%;
+    display: grid;
+
+    /* 横2列 × 縦5列 */
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.sound-button {
+    border: none;
+    border-radius: 18px;
+
+    background: #eeeeee;
+    color: #111;
+
+    font-size: 48px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    -webkit-user-select: none;
+    user-select: none;
+
+    touch-action: manipulation;
+}
+
+.sound-button:active {
+    background: #aaaaaa;
+    transform: scale(0.97);
+}
+</style>
+</head>
+
+<body>
+
+<div id="buttons">
+    <button class="sound-button" data-sound="sound1.mp3">1</button>
+    <button class="sound-button" data-sound="sound2.mp3">2</button>
+    <button class="sound-button" data-sound="sound3.mp3">3</button>
+    <button class="sound-button" data-sound="sound4.mp3">4</button>
+    <button class="sound-button" data-sound="sound5.mp3">5</button>
+    <button class="sound-button" data-sound="sound6.mp3">6</button>
+    <button class="sound-button" data-sound="sound7.mp3">7</button>
+    <button class="sound-button" data-sound="sound8.mp3">8</button>
+    <button class="sound-button" data-sound="sound9.mp3">9</button>
+    <button class="sound-button" data-sound="sound10.mp3">10</button>
+</div>
+
+<script>
+
+document.querySelectorAll(".sound-button").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const soundFile = button.dataset.sound;
+
+        // 押すたびに新しいAudioを作る
+        // → 他の音声を止めずに同時再生できる
+        const audio = new Audio(soundFile);
+
+        audio.play();
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
